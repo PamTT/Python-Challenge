@@ -13,10 +13,11 @@ with open (csvpath,'r',) as csv_file:
         print("csv row: {0}".format(row))
         number_of_months = number_of_months+1
         csv_reader_object.line_num
-print('total number of months ' + str(number_of_months-1))
+
 
 #Calculate the net total amount of "Profit/Losses" over the entire period
-months = 86
+#Calculate the average of the changes in "Profit/Losses" over the entire period
+#months = 86
 profits_losses=[]
 with open (csvpath,'r',) as csv_file:
     for row in csv.reader(csv_file):
@@ -30,23 +31,37 @@ print(profits_losses)
 
 net_profit=sum(profits_losses)
 average_change = net_profit/number_of_months
+greatest_increase=max(profits_losses)
+greatest_decrease=min(profits_losses)
 
+
+
+print("    ")
+print("Output")
+print('Total number of months is ' + str(number_of_months-1))
 print('Total amount of Profit/losses is ' + str(net_profit))
 print('Average Profit/losses is ' +str(average_change))
+print("The greatest increase is " + str(greatest_increase))
+print("The greatest decrease is " + str(greatest_decrease))
 
 
-#Calculate the average of the changes in "Profit/Losses" over the entire period
-#average_change = profits_losses/months
-#print(average_change)
-
-
-#Calcurate the greatest increase in profits (date and amount) over the entire period
-
-
-#Calcurate the greatest decrease in losses (date and amount) over the entire period
-
-# print
 
 # export file as a result
+
+# Specify the file to write to
+output_path = os.path.join("Analysis", "Analysis_file-PyBank.csv")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w') as csvfile:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    # Write the first row (column headers)
+    csvwriter.writerow(['Total months', 'Total amount', 'Average', 'Greatest increase', 'Greatest decrease'])
+
+    # Write the second row
+    csvwriter.writerow([str(number_of_months-1), str(net_profit), str(average_change),str(greatest_increase),str(greatest_decrease) ])
+
 
 
