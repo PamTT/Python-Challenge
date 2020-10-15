@@ -12,7 +12,7 @@ with open (csvpath,'r',) as csv_file:
     for row in csv_reader:
         print("csv row: {0}".format(row))
         number_of_months = number_of_months+1
-        csv_reader_object.line_num
+        #csv_reader_object.line_num
 
 
 #Calculate the net total amount of "Profit/Losses" over the entire period
